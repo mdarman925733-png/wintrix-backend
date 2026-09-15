@@ -16,7 +16,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Decode Keystore
-        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > app/ishqana-release.jks
+        run: echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > $GITHUB_WORKSPACE/app/ishqana-release.jks
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -27,7 +27,7 @@ jobs:
       - name: Build Release Bundle
         run: |
           ./gradlew :app:bundleRelease \
-            -Pandroid.injected.signing.store.file=ishqana-release.jks \
+            -Pandroid.injected.signing.store.file=$GITHUB_WORKSPACE/app/ishqana-release.jks \
             -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} \
             -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} \
             -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }} \
