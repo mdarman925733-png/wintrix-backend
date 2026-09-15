@@ -12,8 +12,8 @@ android {
         applicationId = "com.aicomp"
         minSdk = 24
         targetSdk = 36
-        versionCode = 9
-        versionName = "1.5.8"
+        versionCode = 10
+        versionName = "1.5.9"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -60,6 +60,16 @@ android {
     }
 }
 
+// Agora full-sdk pulls in a separate screen-sharing module that declares
+// FOREGROUND_SERVICE_MEDIA_PROJECTION + foregroundServiceType="mediaProjection".
+// We don't use screen sharing anywhere, so exclude it everywhere it could
+// sneak in (this is stronger than the manifest tools:remove, which only
+// works if the component names match exactly).
+configurations.all {
+    exclude(group = "io.agora.rtc", module = "full-screen-sharing")
+    exclude(group = "io.agora.rtc", module = "agora-screen-sharing")
+}
+
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
@@ -70,7 +80,10 @@ dependencies {
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-functions-ktx")
-    implementation("io.agora.rtc:full-sdk:4.6.4")
+    implementation("io.agora.rtc:full-sdk:4.6.4") {
+        exclude(group = "io.agora.rtc", module = "full-screen-sharing")
+        exclude(group = "io.agora.rtc", module = "agora-screen-sharing")
+    }
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")
     implementation("androidx.core:core-ktx:1.13.1")
