@@ -34,21 +34,36 @@ jobs:
             -Pandroid.injected.signing.store.type=jks
 
       - name: Print merged manifest (verify permissions)
+        continue-on-error: true
         run: |
-          echo "----- MERGED MANIFEST -----"
-          cat app/build/intermediates/merged_manifest/release/AndroidManifest.xml || \
-          cat app/build/intermediates/merged_manifests/release/AndroidManifest.xml
-          echo "----------------------------"
+          echo "----- Searching for merged AndroidManifest.xml -----"
+          MANIFEST=$(find app/build -path "*merged_manifest*/AndroidManifest.xml" -o -path "*merged_manifests*/release/AndroidManifest.xml" | head -n 1)
+          if [ -z "$MANIFEST" ]; then
+            MANIFEST=$(find app/build -name "AndroidManifest.xml" | grep -i release | head -n 1)
+          fi
+          echo "Found manifest at: $MANIFEST"
+          if [ -z "$MANIFEST" ]; then
+            echo "No merged manifest found anywhere under app/build"
+            find app/build -name "AndroidManifest.xml"
+            exit 0
+          fi
+          echo "----- MANIFEST CONTENT -----"
+          cat "$MANIFEST"
+          echo "-----------------------------"
           echo "Checking for FOREGROUND_SERVICE_MEDIA_PROJECTION..."
-          grep -i "FOREGROUND_SERVICE_MEDIA_PROJECTION" app/build/intermediates/merged_manifest*/release/AndroidManifest.xml || echo "NOT FOUND - permission successfully removed"
+          grep -i "FOREGROUND_SERVICE_MEDIA_PROJECTION" "$MANIFEST" && echo "STILL PRESENT" || echo "NOT FOUND - permission successfully removed"
+          echo "$MANIFEST" > /tmp/manifest_path.txt
 
       - name: Upload merged manifest
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: merged-manifest
-          path: app/build/intermediates/merged_manifest*/release/AndroidManifest.xml
+          path: app/build/**/AndroidManifest.xml
+          if-no-files-found: warn
 
       - name: Upload AAB
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: release-bundle
