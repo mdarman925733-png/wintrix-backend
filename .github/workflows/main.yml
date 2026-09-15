@@ -33,6 +33,21 @@ jobs:
             -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }} \
             -Pandroid.injected.signing.store.type=jks
 
+      - name: Print merged manifest (verify permissions)
+        run: |
+          echo "----- MERGED MANIFEST -----"
+          cat app/build/intermediates/merged_manifest/release/AndroidManifest.xml || \
+          cat app/build/intermediates/merged_manifests/release/AndroidManifest.xml
+          echo "----------------------------"
+          echo "Checking for FOREGROUND_SERVICE_MEDIA_PROJECTION..."
+          grep -i "FOREGROUND_SERVICE_MEDIA_PROJECTION" app/build/intermediates/merged_manifest*/release/AndroidManifest.xml || echo "NOT FOUND - permission successfully removed"
+
+      - name: Upload merged manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: merged-manifest
+          path: app/build/intermediates/merged_manifest*/release/AndroidManifest.xml
+
       - name: Upload AAB
         uses: actions/upload-artifact@v4
         with:
