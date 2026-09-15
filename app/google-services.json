@@ -1,0 +1,175 @@
+{
+  "project_info": {
+    "project_number": "90426342126",
+    "firebase_url": "https://wintrix-ac752-default-rtdb.firebaseio.com",
+    "project_id": "wintrix-ac752",
+    "storage_bucket": "wintrix-ac752.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90426342126:android:6635c86287797a504591ff",
+        "android_client_info": {
+          "package_name": "com.aicomp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90426342126-7tgn7r7dq4ka6glnafmdc6bd5k1j14hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6agrtsXIXG5Ex5oWGOOmX1n9W4EWhN3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90426342126-7tgn7r7dq4ka6glnafmdc6bd5k1j14hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90426342126:android:d1e71e4e26ae86634591ff",
+        "android_client_info": {
+          "package_name": "com.kusbilo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90426342126-qet19gspermium6ck9bqru1d4v8n5fv7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kusbilo",
+            "certificate_hash": "83997721d37787ad8e724aa5eb358f3eb13335bb"
+          }
+        },
+        {
+          "client_id": "90426342126-v0spq1s0u75vbthmbv04sjkq17q03k4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kusbilo",
+            "certificate_hash": "42b74d2912e8bf49b63f406023f40955bb83ecc9"
+          }
+        },
+        {
+          "client_id": "90426342126-7tgn7r7dq4ka6glnafmdc6bd5k1j14hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6agrtsXIXG5Ex5oWGOOmX1n9W4EWhN3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90426342126-7tgn7r7dq4ka6glnafmdc6bd5k1j14hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90426342126:android:71ce4076430b94954591ff",
+        "android_client_info": {
+          "package_name": "com.kusbilo.business"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90426342126-jpkkv68fll8ub8mkq91arfg8dh5hqvig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kusbilo.business",
+            "certificate_hash": "606da0e0e36ebb31cb878881bac02147c8edc9e4"
+          }
+        },
+        {
+          "client_id": "90426342126-u1dji2eq9dn0a991qkfjuvrl18qecv1g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kusbilo.business",
+            "certificate_hash": "234e732c3bbfe2f464bcebc59cb2c993db0c842b"
+          }
+        },
+        {
+          "client_id": "90426342126-7tgn7r7dq4ka6glnafmdc6bd5k1j14hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6agrtsXIXG5Ex5oWGOOmX1n9W4EWhN3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90426342126-7tgn7r7dq4ka6glnafmdc6bd5k1j14hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:90426342126:android:56024b606511c1c14591ff",
+        "android_client_info": {
+          "package_name": "com.wintrix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "90426342126-5m2q2dvv6sumhmiuau26n3cci0iusq3d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wintrix",
+            "certificate_hash": "151e5ebc8e30f010bc21b7300d227fc76cb513f3"
+          }
+        },
+        {
+          "client_id": "90426342126-uhuub8nrtdms1n0802tpj1dbt5l8vapl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wintrix",
+            "certificate_hash": "69bcb91965f59fa2999583492de7c2278f3c09a1"
+          }
+        },
+        {
+          "client_id": "90426342126-7tgn7r7dq4ka6glnafmdc6bd5k1j14hn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD6agrtsXIXG5Ex5oWGOOmX1n9W4EWhN3c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "90426342126-7tgn7r7dq4ka6glnafmdc6bd5k1j14hn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
