@@ -62,6 +62,56 @@ jobs:
           path: app/build/**/AndroidManifest.xml
           if-no-files-found: warn
 
+      - name: Decode full manifest with aapt2 (catches binary/compiled attributes)
+        continue-on-error: true
+        run: |
+          echo "----- Locating AAB -----"
+          AAB_PATH=$(find app/build/outputs/bundle/release -name "*.aab" | head -n 1)
+          echo "Using AAB: $AAB_PATH"
+          if [ -z "$AAB_PATH" ]; then
+            echo "No AAB found, skipping decode step"
+            exit 0
+          fi
+
+          echo "----- Downloading bundletool -----"
+          curl -sL -o bundletool.jar https://github.com/google/bundletool/releases/download/1.15.6/bundletool-all-1.15.6.jar
+
+          echo "----- Building universal APK from AAB -----"
+          java -jar bundletool.jar build-apks \
+            --bundle="$AAB_PATH" \
+            --output=out.apks \
+            --mode=universal \
+            --ks=$GITHUB_WORKSPACE/app/ishqana-release.jks \
+            --ks-pass=pass:${{ secrets.KEYSTORE_PASSWORD }} \
+            --ks-key-alias=${{ secrets.KEY_ALIAS }} \
+            --key-pass=pass:${{ secrets.KEY_PASSWORD }} \
+            --overwrite
+
+          echo "----- Extracting universal.apk -----"
+          unzip -o out.apks -d apks_extracted
+
+          echo "----- Locating aapt2 -----"
+          AAPT2=$(find "$ANDROID_HOME" -name "aapt2" -type f 2>/dev/null | head -n 1)
+          echo "Using aapt2: $AAPT2"
+          if [ -z "$AAPT2" ]; then
+            echo "aapt2 not found under ANDROID_HOME, skipping decode"
+            exit 0
+          fi
+
+          echo "----- Dumping fully decoded manifest -----"
+          "$AAPT2" dump xmltree apks_extracted/universal.apk --file AndroidManifest.xml > decoded_manifest.txt
+
+          echo "===== SEARCH RESULT ====="
+          grep -i "foregroundServiceType\|MEDIA_PROJECTION" decoded_manifest.txt && echo "STILL PRESENT (binary-level)" || echo "GENUINELY NOT FOUND - Play Console side issue confirmed"
+
+      - name: Upload decoded manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: decoded-manifest
+          path: decoded_manifest.txt
+          if-no-files-found: warn
+
       - name: Upload AAB
         if: always()
         uses: actions/upload-artifact@v4
