@@ -5,6 +5,8 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -93,10 +95,13 @@ fun LoginScreen(
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
+                .imePadding()
                 .padding(horizontal = 28.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.Top
         ) {
+            Spacer(modifier = Modifier.height(72.dp))
             com.aicomp.ui.components.CompanionPulseLogo(
                 modifier = Modifier.padding(bottom = 12.dp)
             )
@@ -187,7 +192,7 @@ private fun GoogleSignInSection(
                 CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Color(0xFF4285F4))
             } else {
                 Text(
-                    text = "🔵  Google se sign in karo",
+                    text = "🔵  Continue with Google",
                     color = Color(0xFF1A1A2E),
                     fontWeight = FontWeight.SemiBold,
                     fontSize = 15.sp
@@ -246,12 +251,12 @@ private fun PhoneOtpSection(
                 if (uiState.isLoading) {
                     CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Color.White)
                 } else {
-                    Text("OTP bhejo", fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
+                    Text("Send OTP", fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
                 }
             }
         } else {
             Text(
-                text = "OTP ${phone} pe bheja gaya",
+                text = "OTP sent to $phone",
                 color = Color.White.copy(alpha = 0.75f),
                 textAlign = TextAlign.Center
             )
@@ -281,7 +286,7 @@ private fun PhoneOtpSection(
                 if (uiState.isLoading) {
                     CircularProgressIndicator(modifier = Modifier.size(22.dp), strokeWidth = 2.dp, color = Color.White)
                 } else {
-                    Text("Verify karo", fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
+                    Text("Verify OTP", fontWeight = FontWeight.SemiBold, fontSize = 15.sp)
                 }
             }
         }
