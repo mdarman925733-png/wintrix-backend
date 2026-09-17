@@ -9,8 +9,10 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.Icon
@@ -39,7 +41,13 @@ fun CompanionPulseLogo(
     accentColor: Color = Color(0xFFFF6F91)
 ) {
     Box(
-        modifier = modifier.size(size * 2.4f),
+        modifier = modifier
+            .size(size * 2.4f)
+            .background(
+                Brush.radialGradient(
+                    colors = listOf(accentColor.copy(alpha = 0.30f), Color.Transparent)
+                )
+            ),
         contentAlignment = Alignment.Center
     ) {
         PulseRings(maxRadiusDp = size * 1.2f, color = accentColor)
