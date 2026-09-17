@@ -15,6 +15,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "90426342126-2h9ohn68hf68etmacelhql7o3b2srodu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aicomp",
+            "certificate_hash": "81ec4884868025b4d149147e3aaec1f83d994e11"
+          }
+        },
+        {
+          "client_id": "90426342126-ia8mt8te6b4isn6muudgqt52u16a2vpo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aicomp",
+            "certificate_hash": "a29101eca48e9deab4b8c4ddc8781540432aac14"
+          }
+        },
+        {
           "client_id": "90426342126-kgm6hcuto7q2b7lnmtue1rlhurctl49a.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -180,4 +196,4 @@
     }
   ],
   "configuration_version": "1"
-        }
+}
