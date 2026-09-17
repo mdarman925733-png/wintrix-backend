@@ -24,6 +24,29 @@ jobs:
       - name: Remove local aapt2 override for CI
         run: sed -i '/android.aapt2FromMavenOverride/d' gradle.properties
 
+      - name: Generate app icons from single source image
+        run: |
+          SRC="app/icon-source.png"
+          if [ ! -f "$SRC" ]; then
+            echo "icon-source.png not found, skipping icon generation"
+            exit 0
+          fi
+
+          declare -A sizes=( [mdpi]=48 [hdpi]=72 [xhdpi]=96 [xxhdpi]=144 [xxxhdpi]=192 )
+
+          for density in "${!sizes[@]}"; do
+            size=${sizes[$density]}
+            dir="app/src/main/res/mipmap-$density"
+            mkdir -p "$dir"
+
+            echo "Generating $density ($size x $size)"
+            convert "$SRC" -resize ${size}x${size} "$dir/ic_launcher.png"
+            convert "$SRC" -resize ${size}x${size} "$dir/ic_launcher_round.png"
+            convert "$SRC" -resize ${size}x${size} "$dir/ic_launcher_foreground.png"
+          done
+
+          echo "All icon sizes generated successfully"
+
       - name: Build Release Bundle
         run: |
           ./gradlew :app:bundleRelease \
