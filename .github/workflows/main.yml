@@ -24,6 +24,9 @@ jobs:
       - name: Remove local aapt2 override for CI
         run: sed -i '/android.aapt2FromMavenOverride/d' gradle.properties
 
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
       - name: Generate app icons from single source image
         run: |
           SRC="app/icon-source.png"
